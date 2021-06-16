@@ -17,8 +17,8 @@ String myIp;
 int hour = 0;
 int minute = 0;
 
-#define CLK 5 //can be any digital pin
-#define DIO 4 //can be any digital pin
+#define CLK 5 // Connected to D1 on board
+#define DIO 4 // Connected to D2 on board
 TM1637Display display(CLK, DIO);
 
 void connect() {

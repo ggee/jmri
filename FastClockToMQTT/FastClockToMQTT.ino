@@ -4,6 +4,10 @@
 #include <TM1637Display.h>
 #include <ArduinoOTA.h>
 
+// Arduino Libraries to load
+// MQTT.h - "MQTT" by Joel Gaehwiler
+// TM1637Display.h - "TM1637" by Avishay Orpaz
+
 const char* ssid = "my_ssid";
 const char* password = "my_pwd";
 const char* mqtt_server = "192.168.10.51";

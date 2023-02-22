@@ -7,6 +7,7 @@
 const char* mqtt_server = "192.168.10.51";
 const char* node_id = "3997";
 const char* node_name = "node3997";
+const char* topicBase = "myLayout";
 
 WiFiClient net;
 MQTTClient client;
@@ -33,9 +34,9 @@ void connect() {
 
   Serial.println("\nconnected!");
   
-  client.publish("myLayout/clock/" + String(node_id) + "/IPA", myIp + " is here!");
-  client.subscribe("myLayout/jmri/fastclock/hour");
-  client.subscribe("myLayout/jmri/fastclock/minute");
+  client.publish(String(topicBase) + "/clock/" + String(node_id) + "/IPA", myIp + " is here!");
+  client.subscribe(String(topicBase) + "/jmri/fastclock/hour");
+  client.subscribe(String(topicBase) + "/jmri/fastclock/minute");
 }
 
 void setTime() {
@@ -46,12 +47,12 @@ void setTime() {
 
 void messageReceived(String &topic, String &payload) {
 
-  if (String(topic) == "myLayout/jmri/fastclock/minute") {
+  if (String(topic) == String(topicBase) + "/jmri/fastclock/minute") {
     Serial.println("Minute updating to " + payload);
     minute = payload.toInt();
     setTime();
   }
-  if (String(topic) == "myLayout/jmri/fastclock/hour") {
+  if (String(topic) == String(topicBase) + "/jmri/fastclock/hour") {
     Serial.println("Hour updating to " + payload);
     hour = payload.toInt();
     setTime();

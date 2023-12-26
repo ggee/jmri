@@ -1,0 +1,1 @@
+This script uses a MQTT topic to reports the current track power state from the default connection.  This script also subscribes to the topic to listen for external updates from other automation systems such as home automation remotely turning on and off the track power.

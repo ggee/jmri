@@ -4,7 +4,10 @@
 #include <TM1637Display.h> // TM1637Display.h - "TM1637" by Avishay Orpaz
 #include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
 
-const char* mqtt_server = "192.168.10.51";
+const char* mqtt_server = "192.168.10.100";
+const char* mqtt_user = "user";
+const char* mqtt_pwd = "password";
+
 const char* node_id = "3997";
 const char* node_name = "node3997";
 const char* topicBase = "myLayout";
@@ -27,7 +30,8 @@ void connect() {
   Serial.println("IP address: " + myIp);
 
   Serial.print("\nconnecting to broker " + String(mqtt_server) + "...");
-  while (!client.connect(node_name)) {
+  // while (!client.connect(node_name)) {  // Server with no auth
+  while (!client.connect(node_name, mqtt_user, mqtt_pwd)) {   // Server with auth
     Serial.print(".");
     delay(1000);
   }
